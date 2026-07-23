@@ -41,7 +41,7 @@ describe('useFintechSecurity', () => {
     jest.restoreAllMocks();
   });
 
-  it('loads identifier on mount and clears loading', async () => {
+  it('carga el identificador al montar y limpia el estado de carga', async () => {
     (FintechSecurityService.getIdentifier as jest.Mock).mockResolvedValue('device-abc');
     const snapshots: HookState[] = [];
 
@@ -58,7 +58,7 @@ describe('useFintechSecurity', () => {
     expect(latest.error).toBeNull();
   });
 
-  it('sets error when service throws', async () => {
+  it('guarda el error cuando el servicio falla', async () => {
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
     (FintechSecurityService.getIdentifier as jest.Mock).mockRejectedValue(new Error('service boom'));
     const snapshots: HookState[] = [];
@@ -77,7 +77,7 @@ describe('useFintechSecurity', () => {
     consoleSpy.mockRestore();
   });
 
-  it('refresh fetches a new identifier value', async () => {
+  it('refresh obtiene un nuevo valor de identificador', async () => {
     (FintechSecurityService.getIdentifier as jest.Mock)
       .mockResolvedValueOnce('first-id')
       .mockResolvedValueOnce('second-id');
@@ -106,7 +106,7 @@ describe('useFintechSecurity', () => {
     expect(afterRefresh.error).toBeNull();
   });
 
-  it('shows loading while request is pending and clears it after resolve', async () => {
+  it('muestra carga mientras la peticion esta pendiente y la limpia al resolver', async () => {
     let resolveIdentifier: ((value: string) => void) | undefined;
     (FintechSecurityService.getIdentifier as jest.Mock).mockImplementation(
       () =>
@@ -138,7 +138,7 @@ describe('useFintechSecurity', () => {
     expect(latest.error).toBeNull();
   });
 
-  it('clears previous error when refresh succeeds after a failure', async () => {
+  it('limpia el error previo cuando refresh se recupera despues de una falla', async () => {
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
     (FintechSecurityService.getIdentifier as jest.Mock)
       .mockRejectedValueOnce(new Error('primer fallo'))

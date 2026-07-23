@@ -19,7 +19,7 @@ jest.mock('../src/features/FintechSecurity/aplication/hooks/useFintechSecurity',
   useFintechSecurity: jest.fn(),
 }));
 
-test('renders challenge title and identifier', async () => {
+test('renderiza el titulo del challenge y el identificador', async () => {
   const refreshMock = jest.fn();
   (useFintechSecurity as jest.Mock).mockReturnValue({
     identifier: 'device-123',
