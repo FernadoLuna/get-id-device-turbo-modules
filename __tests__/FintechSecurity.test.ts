@@ -15,10 +15,10 @@ describe('FintechSecurityService', () => {
     jest.clearAllMocks();
   });
 
-  it('returns the identifier from the native module', () => {
-    (NativeFintechSecurity.getIdentifier as jest.Mock).mockReturnValue('device-123');
+  it('returns the identifier from the native module', async () => {
+    (NativeFintechSecurity.getIdentifier as jest.Mock).mockResolvedValue('device-123');
 
-    expect(FintechSecurityService.getIdentifier()).toBe('device-123');
+    await expect(FintechSecurityService.getIdentifier()).resolves.toBe('device-123');
     expect(NativeFintechSecurity.getIdentifier).toHaveBeenCalledTimes(1);
   });
 });

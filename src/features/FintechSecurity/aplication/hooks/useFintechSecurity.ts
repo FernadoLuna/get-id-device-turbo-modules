@@ -3,12 +3,22 @@ import { FintechSecurityService } from '../../../../core/security';
 
 export function useFintechSecurity() {
   const [identifier, setIdentifier] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const refresh = useCallback(() => {
+  const refresh = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+
     try {
-      setIdentifier(FintechSecurityService.getIdentifier());
-    } catch (error) {
-      console.error('[useFintechSecurity] Error al cargar datos:', error);
+      const value = await FintechSecurityService.getIdentifier();
+      setIdentifier(value);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Unknown error';
+      setError(message);
+      console.error('[useFintechSecurity] Error al cargar datos:', err);
+    } finally {
+      setIsLoading(false);
     }
   }, []);
 
@@ -18,6 +28,8 @@ export function useFintechSecurity() {
 
   return {
     identifier,
+    isLoading,
+    error,
     refresh,
   };
 }

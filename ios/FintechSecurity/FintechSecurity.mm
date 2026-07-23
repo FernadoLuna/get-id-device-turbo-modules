@@ -5,9 +5,10 @@
 
 RCT_EXPORT_MODULE(FintechSecurity)
 
-- (NSString *)getIdentifier {
+- (void)getIdentifier:(RCTPromiseResolveBlock)resolve
+                 reject:(RCTPromiseRejectBlock)reject {
     NSString *identifier = [[UIDevice currentDevice].identifierForVendor UUIDString];
-    return identifier ?: @"UNKNOWN_IOS_ID";
+    resolve(identifier ?: @"UNKNOWN_IOS_ID");
 }
 
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
