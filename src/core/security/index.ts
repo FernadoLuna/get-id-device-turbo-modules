@@ -1,0 +1,1 @@
+export { FintechSecurityService } from './FintechSecurityService';
