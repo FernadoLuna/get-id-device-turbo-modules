@@ -4,8 +4,6 @@ import NativeFintechSecurity from '../src/specs/NativeFintechSecurity';
 jest.mock('../src/specs/NativeFintechSecurity', () => ({
   __esModule: true,
   default: {
-    getDeviceId: jest.fn(),
-    isJailbroken: jest.fn(),
     getIdentifier: jest.fn(),
   },
 }));
@@ -20,5 +18,26 @@ describe('FintechSecurityService', () => {
 
     await expect(FintechSecurityService.getIdentifier()).resolves.toBe('device-123');
     expect(NativeFintechSecurity.getIdentifier).toHaveBeenCalledTimes(1);
+  });
+
+  it('returns UNKNOWN_IDENTIFIER when native module resolves undefined', async () => {
+    (NativeFintechSecurity.getIdentifier as jest.Mock).mockResolvedValue(undefined);
+
+    await expect(FintechSecurityService.getIdentifier()).resolves.toBe('UNKNOWN_IDENTIFIER');
+    expect(NativeFintechSecurity.getIdentifier).toHaveBeenCalledTimes(1);
+  });
+
+  it('returns UNKNOWN_IDENTIFIER and logs error when native module throws', async () => {
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
+    const nativeError = new Error('native-failure');
+    (NativeFintechSecurity.getIdentifier as jest.Mock).mockRejectedValue(nativeError);
+
+    await expect(FintechSecurityService.getIdentifier()).resolves.toBe('UNKNOWN_IDENTIFIER');
+    expect(consoleSpy).toHaveBeenCalledWith(
+      '[FintechSecurityService] Error al obtener Identifier:',
+      nativeError,
+    );
+
+    consoleSpy.mockRestore();
   });
 });
