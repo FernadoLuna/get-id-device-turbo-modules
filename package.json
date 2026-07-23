@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "android:dev": "adb reverse tcp:8081 tcp:8081 || true && react-native run-android --no-packager --port 8081",
     "ios": "react-native run-ios",
+    "ios:dev": "react-native run-ios --no-packager --port 8081",
     "lint": "eslint .",
-    "start": "react-native start",
+    "start": "react-native start --port 8081",
+    "start:reset": "react-native start --port 8081 --reset-cache",
     "test": "jest"
   },
   "dependencies": {

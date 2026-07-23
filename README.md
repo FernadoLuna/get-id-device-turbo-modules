@@ -58,7 +58,7 @@ yarn test --runInBand
 
 ## Nota rapida
 
-Si aparece "No script URL provided", verifica:
+Si aparece "No script URL provided" o "Unable load script" verifica:
 
 1. Metro corriendo en `localhost:8081`.
 2. Estar usando la version de Node de `.nvmrc`.

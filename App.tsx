@@ -1,13 +1,11 @@
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import { StatusBar, StyleSheet, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import ViewIdentifier from './src/features/FintechSecurity/presentation/ViewIdentifier';
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <StatusBar barStyle="dark-content" backgroundColor="#ffd100" />
       <View style={styles.container}>
         <ViewIdentifier />
       </View>
@@ -20,8 +18,7 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#fff7d6',
   },
 });
 

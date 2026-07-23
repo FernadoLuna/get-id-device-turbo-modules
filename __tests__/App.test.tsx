@@ -41,6 +41,6 @@ test('renders challenge title and identifier', async () => {
     .join(' ');
 
   expect(useFintechSecurity).toHaveBeenCalledTimes(1);
-  expect(renderedText).toContain('Identificador del dispositivo obtenido con JSI y TurboModules');
+  expect(renderedText).toContain('ID del dispositivo');
   expect(renderedText).toContain('device-123');
 });
