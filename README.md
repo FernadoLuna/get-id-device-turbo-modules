@@ -1,98 +1,64 @@
-Este es un proyecto de [React Native](https://reactnative.dev), creado con [@react-native-community/cli](https://github.com/react-native-community/cli).
+# SpinChallenge
 
-# Guía de inicio
+## Requisitos
 
-> Nota: Antes de continuar, asegúrate de haber completado la guía de configuración del entorno:
-> [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment)
+- Node.js 22.21.1 (usar `.nvmrc`)
+- Yarn 1.x
+- Xcode + CocoaPods (iOS)
+- Android Studio + SDK (Android)
 
-## Versión de Node.js
-
-Este proyecto requiere Node.js >= 22.11.0 (ver engines en package.json).
-
-Recomendado con nvm:
+## Instalacion
 
 ```sh
 nvm install
 nvm use
+yarn install
 ```
 
-Si Metro se cae o en el simulador aparece "No script URL provided", confirma que estás usando Node 22.x antes de iniciar Metro y iOS.
-
-## Paso 1: Iniciar Metro
-
-Metro es el empaquetador JavaScript de React Native. Inícialo desde la raíz del proyecto:
+## iOS
 
 ```sh
-# Con npm
-npm start
-
-# O con Yarn
-yarn start
-```
-
-## Paso 2: Compilar y ejecutar la app
-
-Con Metro ejecutándose, abre otra terminal en la raíz del proyecto y corre uno de estos comandos.
-
-### Android
-
-```sh
-# Con npm
-npm run android
-
-# O con Yarn
-yarn android
-```
-
-### iOS
-
-En iOS recuerda instalar dependencias de CocoaPods (solo la primera vez o cuando cambien dependencias nativas).
-
-Primera vez:
-
-```sh
+cd ios
 bundle install
-```
-
-Después (y cada vez que cambien dependencias nativas):
-
-```sh
 bundle exec pod install
+cd ..
 ```
 
-Más información:
-[CocoaPods Getting Started](https://guides.cocoapods.org/using/getting-started.html)
+Terminal 1:
 
 ```sh
-# Con npm
-npm run ios
+yarn start --reset-cache
+```
 
-# O con Yarn
+Terminal 2:
+
+```sh
 yarn ios
 ```
 
-Si todo está correcto, verás la app en el emulador de Android, el simulador de iOS o un dispositivo físico conectado.
+## Android
 
-También puedes compilar directamente desde Android Studio o Xcode.
+Terminal 1:
 
-## Paso 3: Modificar la app
+```sh
+yarn start --reset-cache
+```
 
-Abre App.tsx y haz cambios. Al guardar, la app se actualiza automáticamente gracias a [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+Terminal 2:
 
-Para forzar una recarga completa:
+```sh
+yarn android
+```
 
-- Android: presiona R dos veces o usa "Reload" desde el Dev Menu (Ctrl+M en Windows/Linux, Cmd+M en macOS).
-- iOS: presiona R en el simulador.
+## Tests
 
-## Solución de problemas
+```sh
+yarn test --runInBand
+```
 
-Si tienes problemas para levantar el proyecto, revisa:
-[Troubleshooting](https://reactnative.dev/docs/troubleshooting)
+## Nota rapida
 
-## Más recursos
+Si aparece "No script URL provided", verifica:
 
-- [Sitio oficial de React Native](https://reactnative.dev)
-- [Getting Started](https://reactnative.dev/docs/environment-setup)
-- [Learn the Basics](https://reactnative.dev/docs/getting-started)
-- [Blog de React Native](https://reactnative.dev/blog)
-- [Repositorio de React Native](https://github.com/facebook/react-native)
+1. Metro corriendo en `localhost:8081`.
+2. Estar usando la version de Node de `.nvmrc`.
